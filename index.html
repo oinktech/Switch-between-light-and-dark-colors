@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主題切換模組詳細介紹</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://unpkg.com/boxicons/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* 複製按鈕樣式 */
+        .copy-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 8px 0;
+            font-size: 14px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .copy-btn:active {
+            background-color: #004080;
+        }
+
+        /* 代碼區域樣式 */
+        pre {
+            position: relative;
+            padding: 16px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        pre code {
+            display: block;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>主題切換模組詳細介紹</h1>
+    </header>
+
+    <main>
+        <section id="introduction">
+            <h2>什麼是主題切換模組？</h2>
+            <p>
+                這個主題切換模組允許網站用戶輕鬆地在深色模式和淺色模式之間切換。無論您的網站是什麼樣的設計，這個模組都能為用戶提供良好的視覺體驗，並且能夠自動檢查網站是否包含適當的樣式。
+            </p>
+            <h3>功能特色</h3>
+            <ul>
+                <li><strong>一鍵切換</strong>：通過浮動按鈕快速切換網站的顏色主題。</li>
+                <li><strong>透明按鈕</strong>：按鈕背景透明度設置為 25%，不會搶走網站的關注點，但足夠明顯以便於用戶操作。</li>
+                <li><strong>動態樣式檢查</strong>：自動檢查網站 CSS 是否包含深色模式和淺色模式樣式，如果缺少，會在控制台顯示錯誤信息。</li>
+            </ul>
+        </section>
+
+        <section id="support">
+            <h2>技術支持</h2>
+            <h3>兼容性</h3>
+            <p>
+                這個模組使用標準的 JavaScript 和 CSS，並且依賴於 Boxicons 圖標庫。以下是技術要求：
+            </p>
+            <ul>
+                <li><strong>瀏覽器支持</strong>：現代瀏覽器（Chrome、Firefox、Safari、Edge）</li>
+                <li><strong>依賴</strong>：Boxicons 圖標庫，通過外部 CDN 引入。</li>
+            </ul>
+            <h3>常見問題</h3>
+            <dl>
+                <dt>為什麼我的主題切換按鈕沒有顯示？</dt>
+                <dd>
+                    確保您正確地引入了 <code>theme-toggle.js</code> 文件。<br>
+                    確保在 HTML 中正確引入了 Boxicons 圖標庫。<br>
+                    檢查您的瀏覽器控制台是否有錯誤信息，這可能會提供有用的調試信息。
+                </dd>
+                <dt>如何添加更多的主題顏色？</dt>
+                <dd>
+                    修改 CSS 中的 <code>--background-color</code> 和 <code>--text-color</code> 變量，並確保您的樣式表中包含這些變量的定義。
+                </dd>
+            </dl>
+        </section>
+
+        <section id="usage">
+            <h2>使用方法</h2>
+            <h3>步驟 1：引入 Boxicons 圖標庫</h3>
+            <p>在您的 HTML 文件 <code>&lt;head&gt;</code> 部分中加入以下內容：</p>
+            <pre><code>&lt;link href='https://unpkg.com/boxicons/css/boxicons.min.css' rel='stylesheet'&gt;</code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+
+            <h3>步驟 2：引入主題切換模組</h3>
+            <p>在您的 HTML 文件 <code>&lt;body&gt;</code> 部分末尾之前引入 <code>theme-toggle.js</code> 文件：</p>
+            <pre><code>&lt;script src="path/to/theme-toggle.js" defer&gt;&lt;/script&gt;</code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+
+            <h3>步驟 3：設置 CSS 樣式</h3>
+            <p>確保您的 CSS 文件中包含深色模式和淺色模式的樣式。例如：</p>
+            <pre><code>
+/* 深色模式 */
+.dark-mode {
+    --background-color: #1e1e1e;
+    --text-color: #e0e0e0;
+    /* 其他深色模式樣式 */
+}
+
+/* 淺色模式 */
+.light-mode {
+    --background-color: #ffffff;
+    --text-color: #333333;
+    /* 其他淺色模式樣式 */
+}
+            </code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+
+            <h3>步驟 4：初始化模組</h3>
+            <p>當 HTML 文件加載完成時，<code>theme-toggle.js</code> 會自動插入必要的 CSS 和按鈕，並處理主題切換邏輯。確保在 HTML 文件中使用了 <code>defer</code> 屬性來確保在 DOM 加載完成後才執行腳本：</p>
+            <pre><code>&lt;script src="https://oinktech.github.io/Switch-between-light-and-dark-colors/theme-toggle-version1.js" defer&gt;&lt;/script&gt;</code></pre>
+            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+
+            <h3>測試</h3>
+            <ul>
+                <li>在瀏覽器中打開您的網站，確認主題切換按鈕是否顯示。</li>
+                <li>點擊按鈕切換主題，並確認主題切換是否按預期工作。</li>
+                <li>檢查控制台是否有錯誤信息，確保 CSS 中包含深色和淺色模式的樣式。</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Oinktech. 所有權利保留。</p>
+    </footer>
+
+    <script>
+        function copyCode(button) {
+            // 獲取代碼區域的內容
+            var codeBlock = button.previousElementSibling;
+            var code = codeBlock.textContent;
+
+            // 創建一個臨時的 textarea 元素來複製內容
+            var tempTextArea = document.createElement('textarea');
+            tempTextArea.value = code;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            // 提示用戶已複製
+            button.textContent = '已複製';
+            setTimeout(() => {
+                button.textContent = '複製';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
