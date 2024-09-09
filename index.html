@@ -4,53 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>主題切換模組詳細介紹</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="https://oinktech.github.io/images/favicon.ico" type="image/x-icon">
     <link href='https://unpkg.com/boxicons/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        /* 複製按鈕樣式 */
-        .copy-btn {
-            display: inline-block;
-            padding: 8px 16px;
-            margin: 8px 0;
-            font-size: 14px;
-            color: #fff;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background-color: #1e1e1e;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* 防止水平滾動條 */
         }
 
-        .copy-btn:hover {
-            background-color: #0056b3;
+        header, footer {
+            background-color: #333;
+            color: #e0e0e0;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        .copy-btn:active {
-            background-color: #004080;
+        header h1, footer p {
+            margin: 0;
+            transition: color 0.3s ease;
         }
 
-        /* 代碼區域樣式 */
+        footer {
+            margin-top: 2rem;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #444;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #00BFFF;
+            border-bottom: 2px solid #00BFFF;
+            padding-bottom: 10px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        h2:hover {
+            color: #00A5E0;
+            border-color: #00A5E0;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
         pre {
             position: relative;
             padding: 16px;
-            background-color: #f4f4f4;
+            background-color: #333;
+            border: 1px solid #444;
             border-radius: 5px;
             overflow-x: auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        pre:hover {
+            background-color: #2c2c2c;
         }
 
         pre code {
             display: block;
-            color: #333;
+            color: #e0e0e0;
+            white-space: pre-wrap;
+        }
+
+        .copy-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 8px;
+            font-size: 14px;
+            color: #e0e0e0;
+            background-color: #00BFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .copy-btn:hover {
+            background-color: #009ACD;
+        }
+
+        .copy-btn:active {
+            background-color: #007FFF;
+            transform: scale(0.98);
+        }
+
+        .copy-btn:focus {
+            outline: none;
+        }
+
+        .copy-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.5s ease;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+        }
+
+        .copy-btn:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* 添加簡單的動畫 */
+        .animate {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>主題切換模組詳細介紹</h1>
+        <h1 class="animate">主題切換模組詳細介紹</h1>
     </header>
 
     <main>
-        <section id="introduction">
+        <section id="introduction" class="animate">
             <h2>什麼是主題切換模組？</h2>
             <p>
                 這個主題切換模組允許網站用戶輕鬆地在深色模式和淺色模式之間切換。無論您的網站是什麼樣的設計，這個模組都能為用戶提供良好的視覺體驗，並且能夠自動檢查網站是否包含適當的樣式。
@@ -63,7 +166,7 @@
             </ul>
         </section>
 
-        <section id="support">
+        <section id="support" class="animate">
             <h2>技術支持</h2>
             <h3>兼容性</h3>
             <p>
@@ -88,7 +191,7 @@
             </dl>
         </section>
 
-        <section id="usage">
+        <section id="usage" class="animate">
             <h2>使用方法</h2>
             <h3>步驟 1：引入 Boxicons 圖標庫</h3>
             <p>在您的 HTML 文件 <code>&lt;head&gt;</code> 部分中加入以下內容：</p>
