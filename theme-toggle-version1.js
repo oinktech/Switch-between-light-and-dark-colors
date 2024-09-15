@@ -77,6 +77,13 @@ function insertCSS(css) {
     document.head.appendChild(style);
 }
 
+// 動態插入 boxicons.js
+function insertBoxicons() {
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/boxicons@2.1.4/dist/boxicons.js';
+    document.head.appendChild(script);
+}
+
 // 創建並插入切換按鈕
 function createThemeToggleButton() {
     const button = document.createElement('button');
@@ -136,6 +143,7 @@ function checkThemeStyles() {
 // 初始化函數
 function initThemeToggle() {
     insertCSS(css);
+    insertBoxicons();  // 動態插入 boxicons.js
     checkThemeStyles();
     createThemeToggleButton();
 }
