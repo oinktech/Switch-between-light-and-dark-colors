@@ -54,47 +54,24 @@ const css = `
     opacity: 1;
 }
 
-/* 調整亮度滑塊樣式 */
-.brightness-slider {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 9999;
-    width: 200px;
-}
-
-.brightness-slider input {
-    width: 100%;
-}
-
-/* 深色模式樣式 */
 .dark-mode {
     --background-color: #1e1e1e;
     --text-color: #e0e0e0;
+    --button-color: #007bff;
+    --button-hover-color: #0056b3;
     background-color: var(--background-color);
     color: var(--text-color);
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* 淺色模式樣式 */
 .light-mode {
     --background-color: #ffffff;
     --text-color: #000000;
+    --button-color: #00bfff;
+    --button-hover-color: #009acd;
     background-color: var(--background-color);
     color: var(--text-color);
     transition: background-color 0.4s ease, color 0.4s ease;
-}
-
-/* 顏色選擇器 */
-.color-picker {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 9999;
-}
-
-.color-picker input {
-    margin: 5px;
 }
 
 @keyframes slide-in {
@@ -147,6 +124,7 @@ function createThemeToggleButton() {
     button.className = 'theme-toggle-btn';
     button.title = '切換主題';
 
+    // 根據本地儲存或系統主題設置按鈕圖標
     const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark-mode' : 'light-mode');
     document.documentElement.classList.add(currentTheme);
     button.innerHTML = currentTheme === 'dark-mode'
@@ -175,65 +153,25 @@ function toggleTheme(button) {
     showNotification(newTheme === 'dark-mode' ? '已切換到深色模式' : '已切換到淺色模式');
 }
 
-// 增加亮度/對比度調整滑塊
-function addBrightnessSlider() {
-    const slider = document.createElement('div');
-    slider.className = 'brightness-slider';
-    slider.innerHTML = '<input type="range" min="50" max="150" value="100">';
-    document.body.appendChild(slider);
-
-    slider.querySelector('input').addEventListener('input', (event) => {
-        const brightness = event.target.value;
-        document.documentElement.style.filter = `brightness(${brightness}%)`;
+// 添加鍵盤快捷鍵切換主題
+function addKeyboardShortcut(button) {
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'T' || event.key === 't') {
+            toggleTheme(button);
+        }
     });
-}
-
-// 添加顏色選擇器
-function addColorPicker() {
-    const picker = document.createElement('div');
-    picker.className = 'color-picker';
-    picker.innerHTML = `
-        <input type="color" id="bgColor" name="bgColor" value="#ffffff"> 背景顏色
-        <input type="color" id="textColor" name="textColor" value="#000000"> 文字顏色
-    `;
-    document.body.appendChild(picker);
-
-    picker.querySelector('#bgColor').addEventListener('input', (event) => {
-        const bgColor = event.target.value;
-        document.documentElement.style.setProperty('--background-color', bgColor);
-        localStorage.setItem('bgColor', bgColor);
-    });
-
-    picker.querySelector('#textColor').addEventListener('input', (event) => {
-        const textColor = event.target.value;
-        document.documentElement.style.setProperty('--text-color', textColor);
-        localStorage.setItem('textColor', textColor);
-    });
-}
-
-// 恢復本地儲存的顏色設置
-function restoreCustomColors() {
-    const savedBgColor = localStorage.getItem('bgColor');
-    const savedTextColor = localStorage.getItem('textColor');
-
-    if (savedBgColor) {
-        document.documentElement.style.setProperty('--background-color', savedBgColor);
-    }
-
-    if (savedTextColor) {
-        document.documentElement.style.setProperty('--text-color', savedTextColor);
-    }
 }
 
 // 初始化函數
 function initThemeToggle() {
     insertCSS(css);
-    insertBoxicons();
-    const notification = createNotification();
-    createThemeToggleButton();
-    addBrightnessSlider();
-    addColorPicker();
-    restoreCustomColors();
+    insertBoxicons(); // 動態插入 boxicons.js
+    const notification = createNotification(); // 創建通知元素
+    createThemeToggleButton(); // 創建切換按鈕
+
+    // 添加按鈕的鍵盤快捷鍵
+    const button = document.querySelector('.theme-toggle-btn');
+    addKeyboardShortcut(button);
 }
 
 // 載入腳本
